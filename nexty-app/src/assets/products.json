@@ -1,0 +1,26 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Biele tenisky Nike",
+      "price": 89.99,
+      "category": "obuv",
+      "brand": "Nike",
+      "image": "/images/product1.jpg",
+      "description": "Pohodlné biele tenisky ideálne na každodenné nosenie",
+      "sizes": ["37", "38", "39", "40", "41"],
+      "colors": ["white", "black"]
+    },
+    {
+      "id": 2,
+      "name": "Čierne tenisky Adidas",
+      "price": 99.50,
+      "category": "obuv",
+      "brand": "Adidas",
+      "image": "/images/product2.jpg",
+      "description": "Štýlové čierne tenisky s moderným dizajnom",
+      "sizes": ["39", "40", "41", "42"],
+      "colors": ["black"]
+    }
+  ]
+}

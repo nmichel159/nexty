@@ -1,4 +1,5 @@
 <template>
+
   <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
     <form @submit.prevent="handleLogin" class="bg-white shadow p-6 rounded w-full max-w-sm space-y-4">
       <h2 class="text-xl font-bold text-center">Login</h2>
