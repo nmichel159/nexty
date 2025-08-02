@@ -14,8 +14,9 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import users from '../assets/users.json'  
+import { useUserStore } from '../stores/userStore'
 
-
+const userStore = useUserStore()
 const email = ref('')
 const password = ref('')
 const error = ref('')
@@ -26,6 +27,7 @@ const handleLogin = () => {
   if (user) {
     localStorage.setItem('token', user.token)
     localStorage.setItem('name', user.name)
+    userStore.setUser(user.name, user.token)
     router.push('/products')
   } else {
     error.value = 'Invalid credentials'
