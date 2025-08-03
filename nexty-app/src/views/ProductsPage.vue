@@ -1,4 +1,5 @@
 <template>
+  <!-- Main Head -->
   <div class="min-h-screen p-6 bg-gray-100">
     <!-- Header -->
     <div class="flex justify-between items-center mb-6">
@@ -25,6 +26,7 @@
         v-if="showModal"
         class="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center pt-10 z-50"
         @click.self="showModal = false"
+        style="background-color: rgba(0, 0, 0, 0.7);"
       >
         <div
           class="bg-white p-6 rounded shadow-lg max-w-sm w-full mx-4 max-h-[90vh] overflow-auto"
@@ -68,9 +70,6 @@
        <div class="custom-spinner"></div>
        <span class="text-gray-700 text-lg">Loading...</span>
     </div>
-
-
-
 
     <!-- PRODUCTS -->
     <div
@@ -159,51 +158,4 @@ const gridColsClass = computed(() =>
 )
 </script>
 
-<style>
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
 
-.slide-up-enter-active {
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-}
-.slide-up-leave-active {
-  transition: transform 0.2s ease-in, opacity 0.2s ease-in;
-}
-.slide-up-enter-from {
-  transform: translateY(100%);
-  opacity: 0;
-}
-.slide-up-enter-to {
-  transform: translateY(0);
-  opacity: 1;
-}
-.slide-up-leave-from {
-  transform: translateY(0);
-  opacity: 1;
-}
-.slide-up-leave-to {
-  transform: translateY(100%);
-  opacity: 0;
-}
-
-.custom-spinner {
-  width: 48px;
-  height: 48px;
-  border: 4px solid #3b82f6; /* Tailwind blue-500 */
-  border-top: 4px solid transparent;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: auto;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-</style>
