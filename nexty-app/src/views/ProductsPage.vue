@@ -1,5 +1,4 @@
 <template>
-  <!-- Main Head -->
   <div class="min-h-screen p-6 bg-gray-100">
     <!-- Header -->
     <div class="flex justify-between items-center mb-6">
@@ -8,57 +7,40 @@
     </div>
 
     <!-- Modal -->
-    <transition name="slide-up">
-      <div
-        v-if="showModal"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center pt-10 z-50"
-        @click.self="showModal = false"
-        style="background-color: rgba(0, 0, 0, 0.7);"
+    <BasicModal :visible="showModal" @close="showModal = false">
+      <table
+        v-if="selectedProduct"
+        class="w-full table-auto border border-gray-300 text-sm mt-4"
       >
-        <div
-          class="bg-white p-6 rounded shadow-lg max-w-sm w-full mx-4 max-h-[90vh] overflow-auto"
-          @click.stop
-        >
-          <div class="flex justify-end">
-            <button
-              @click="showModal = false"
-              class="text-2xl font-bold"
-            >
-              &times;
-            </button>
-          </div>
-          <table
-            v-if="selectedProduct"
-            class="w-full table-auto border border-gray-300 text-sm mt-4"
-          >
-            <thead>
-              <tr class="bg-gray-100">
-                <th class="border px-4 py-2 text-left">Veľkosti</th>
-                <th class="border px-4 py-2 text-left">Farby</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="border px-4 py-2 text-gray-700">
-                  {{ selectedProduct.sizes?.join(', ') || '–' }}
-                </td>
-                <td class="border px-4 py-2 text-gray-700">
-                  {{ selectedProduct.colors?.join(', ') || '–' }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </transition>
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border px-4 py-2 text-left">Veľkosti</th>
+            <th class="border px-4 py-2 text-left">Farby</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border px-4 py-2 text-gray-700">
+              {{ selectedProduct.sizes?.join(', ') || '–' }}
+            </td>
+            <td class="border px-4 py-2 text-gray-700">
+              {{ selectedProduct.colors?.join(', ') || '–' }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </BasicModal>
 
-    <!-- LOADING -->
-    <div v-if="isLoading" class="flex flex-col justify-center items-center h-40 space-y-3">
-       <div class="custom-spinner"></div>
-       <span class="text-gray-700 text-lg">Loading...</span>
+    <!-- Loading -->
+    <div
+      v-if="isLoading"
+      class="flex flex-col justify-center items-center h-40 space-y-3"
+    >
+      <div class="custom-spinner"></div>
+      <span class="text-gray-700 text-lg">Loading...</span>
     </div>
 
-    <!-- PRODUCTS -->
+    <!-- Products Grid -->
     <div
       v-else-if="products.length"
       :class="gridColsClass"
@@ -87,7 +69,7 @@
       </div>
     </div>
 
-    <!-- EMPTY -->
+    <!-- Empty state -->
     <p v-else class="text-gray-600 italic">No products found.</p>
   </div>
 </template>
@@ -98,15 +80,18 @@ import { useRouter } from 'vue-router'
 import { useUserStore } from '../stores/userStore'
 import productData from '../assets/products.json'
 import HeadButtons from './basicobject/HeadButtons.vue'
+import BasicModal from './basicobject/BasicModal.vue'
 
 
 const router = useRouter()
 const userStore = useUserStore()
-
-const products = ref([])            
-const isLoading = ref(true)         
+const products = ref([])
+const isLoading = ref(true)
 const selectedProduct = ref(null)
 const showModal = ref(false)
+
+
+
 
 
 onMounted(() => {
@@ -121,30 +106,18 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWidth)
 })
 
-// logout a profile
-const logout = () => {
-  userStore.clearUser()
-  localStorage.clear()
-  router.push('/login')
-}
-const profile = () => {
-  router.push('/profile')
-}
-
-// zobrazenie modal okna
 function openModal(product) {
   selectedProduct.value = product
   showModal.value = true
 }
 
-// grid podľa šírky okna
 const windowWidth = ref(window.innerWidth)
 function updateWidth() {
   windowWidth.value = window.innerWidth
 }
+
 const gridColsClass = computed(() =>
   windowWidth.value < 768 ? 'grid-cols-1' : 'grid-cols-2'
 )
+
 </script>
-
-
