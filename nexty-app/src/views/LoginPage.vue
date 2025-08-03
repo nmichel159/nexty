@@ -6,6 +6,9 @@
       <input v-model="email" type="email" placeholder="Email" class="w-full border p-2 rounded" required />
       <input v-model="password" type="password" placeholder="Password" class="w-full border p-2 rounded" required />
       <button class="w-full bg-blue-500 hover:bg-blue-600 text-white p-2 rounded">Login</button>
+
+      <!-- Basic Errror -->
+      <!-- Da sa zlepsit error -->
       <p v-if="error" class="text-red-500 text-sm text-center">{{ error }}</p>
     </form>
   </div>
@@ -23,6 +26,7 @@ const password = ref('')
 const error = ref('')
 const router = useRouter()
 
+//handler
 const handleLogin = () => {
   const user = users.users.find(u => u.email === email.value && u.password === password.value)
   if (user) {

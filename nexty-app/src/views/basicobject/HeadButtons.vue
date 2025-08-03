@@ -28,6 +28,8 @@ import { useUserStore } from '../../stores/userStore'
 const router = useRouter()
 const userStore = useUserStore()
 
+
+//buttons events
 const logout = () => {
   userStore.clearUser()
   localStorage.clear()

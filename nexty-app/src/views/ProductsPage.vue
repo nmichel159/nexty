@@ -93,7 +93,7 @@ const showModal = ref(false)
 
 
 
-
+//loading data
 onMounted(() => {
   window.addEventListener('resize', updateWidth)
   setTimeout(() => {
@@ -116,6 +116,7 @@ function updateWidth() {
   windowWidth.value = window.innerWidth
 }
 
+//provizorne riesenie na pocet stlpcov. ine riesenie je mozne dat vseobecne posunut vyssie
 const gridColsClass = computed(() =>
   windowWidth.value < 768 ? 'grid-cols-1' : 'grid-cols-2'
 )

@@ -15,7 +15,7 @@
             &times;
           </button>
         </div>
-        <!-- Slot na obsah modalu -->
+        <!-- Here Data -->
         <slot />
       </div>
     </div>
