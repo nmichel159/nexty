@@ -4,20 +4,7 @@
     <!-- Header -->
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-2xl font-bold">Products</h1>
-      <div class="flex flex-col space-y-2">
-        <button
-          @click="logout"
-          class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-        >
-          Logout
-        </button>
-        <button
-          @click="profile"
-          class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-        >
-          Profile
-        </button>
-      </div>
+      <HeadButtons />
     </div>
 
     <!-- Modal -->
@@ -110,6 +97,8 @@ import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '../stores/userStore'
 import productData from '../assets/products.json'
+import HeadButtons from './basicobject/HeadButtons.vue'
+
 
 const router = useRouter()
 const userStore = useUserStore()
